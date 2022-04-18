@@ -1,14 +1,20 @@
 function Spa() {
-
+  const [authenticated, setauthenticated] = React.useState(null);
   return (
     <HashRouter>
-      <NavBar />
       <UserContext.Provider
         value={{
           accountBalance: 0,
-          users: [],
+          user: {
+            ...authenticated,
+          },
+          login: (user) => {
+            //todo: check if user.authenticated on response
+            setauthenticated(user);
+          },
         }}
       >
+        <NavBar />
         <div className="container" style={{ padding: "20px" }}>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
@@ -21,6 +27,5 @@ function Spa() {
     </HashRouter>
   );
 }
-
 
 ReactDOM.render(<Spa />, document.getElementById("root"));

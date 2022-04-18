@@ -2,7 +2,7 @@ const Route       = ReactRouterDOM.Route;
 const Link        = ReactRouterDOM.Link;
 const HashRouter  = ReactRouterDOM.HashRouter;
 const NavLink     = ReactRouterDOM.NavLink;
-const UserContext = React.createContext([{name: name}]);
+const UserContext = React.createContext({});
 
 function Card(props){
     function classes(){

@@ -20,7 +20,7 @@ function NavBar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-          <li className="nav-item">
+            <li className="nav-item">
               <NavLink
                 className="nav-link"
                 to="login"
@@ -64,26 +64,7 @@ function NavBar() {
                 Withdraw
               </NavLink>
             </li>
-            
-            {ctx.user && (
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="allaccounts"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="View all accounts"
-                >
-                  All Accounts
-                </NavLink>
-              </li>
-            )}
-
-          
-          
-           {/* {ctx[0].user} */}
-            
-
+            {ctx.user && <strong>{ctx.user.name}</strong>}
           </ul>
         </div>
       </nav>

@@ -58,7 +58,6 @@ function CreateAccount() {
         setStatus("Success! Account created");
         setShow(false);
         setUser(data.user);
-        ctx.setUser(data.user);
       }
         //ctx.setUser(data);
         

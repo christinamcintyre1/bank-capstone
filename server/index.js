@@ -21,6 +21,30 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+app.post("/account/login", (req, res) => {
+  //req.body; // JavaScript object containing the parse JSON
+  //res.json(req.body);
+  dal.findOne(req.body.email).then((user) => {
+    if (user !== null) {
+      console.log(user);
+      console.log("User already exists");
+      if (user.password === req.body.password) {
+        console.log("Password matches");
+        res.json({
+          name: user.name,
+          email: user.email,
+          authenticated: true,
+        });
+      }
+    } else {
+      console.log("User does not exist");
+      res.json({
+        authenticated: false,
+      });
+    }
+  });
+});
+
 app.post("/account/create", (req, res) => {
   req.body; // JavaScript object containing the parse JSON
   //res.json(req.body);
@@ -84,6 +108,7 @@ app.get("/account/all", function (req, res) {
   });
 });
 
-let port = 3000;
-app.listen(port);
-console.log("Server started on port " + port);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server started on port " + ${PORT}`);
+});
